@@ -34,15 +34,13 @@ python -m http.server 8080
 
 ## פריסה ל-GitHub Pages
 
-הקובץ `.github/workflows/deploy-pages.yml` מגדיר פריסה אוטומטית כאשר עושים push לענף `main`, וכולל `enablement: true` כדי להפעיל Pages גם בריצה הראשונה.
+הקובץ `.github/workflows/deploy-pages.yml` מגדיר פריסה אוטומטית כאשר עושים push לענף `main`.
 
 שלבים ב-GitHub:
 1. נכנסים ל-**Settings → Pages**
 2. בוחרים **Build and deployment: GitHub Actions**
 3. עושים push לענף `main`
 4. האתר יעלה אוטומטית.
-
-אם מתקבלת שגיאת `Get Pages site failed`, בדקו שהריפו ציבורי או שיש הרשאות מתאימות, ואז הריצו שוב את ה-workflow (הקובץ כבר כולל הפעלה אוטומטית של Pages).
 
 ## הכנה ל-Google Play (שלב הבא)
 
