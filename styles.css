@@ -144,29 +144,3 @@ footer {
   color: var(--muted);
   padding: 1rem;
 }
-
-
-.auth-panel {
-  margin-top: 1rem;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  padding: 0.75rem;
-}
-
-.auth-state {
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.auth-form {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.auth-actions {
-  margin-top: 0.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
