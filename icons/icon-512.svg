@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="ועד בית">
+  <rect width="512" height="512" rx="96" fill="#0b5fff"/>
+  <g fill="#ffffff">
+    <path d="M96 248L256 112l160 136v152a16 16 0 0 1-16 16h-96V304h-96v112h-96a16 16 0 0 1-16-16V248z"/>
+    <rect x="232" y="216" width="48" height="72" rx="8" fill="#0b5fff"/>
+  </g>
+</svg>
