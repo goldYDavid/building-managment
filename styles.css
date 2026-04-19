@@ -30,11 +30,12 @@ body {
 }
 
 .auth-panel {
-  margin-top: 1rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0.75rem;
+  background: #ffffff;
+  color: var(--text);
+  border: 2px solid rgba(11, 95, 255, 0.35);
   border-radius: 12px;
-  padding: 0.75rem;
+  padding: 0.85rem;
 }
 
 .auth-state {
@@ -166,4 +167,24 @@ footer {
   text-align: center;
   color: var(--muted);
   padding: 1rem;
+}
+
+
+.auth-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    padding: 0.85rem 0.85rem 1rem;
+  }
+
+  .auth-panel {
+    margin-top: 0.5rem;
+  }
+
+  .auth-form.inline {
+    grid-template-columns: 1fr;
+  }
 }
