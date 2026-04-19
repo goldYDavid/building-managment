@@ -29,6 +29,30 @@ body {
   margin: 0.25rem 0;
 }
 
+.auth-panel {
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.auth-state {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.auth-actions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.auth-form.inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.5rem;
+}
+
 .hidden {
   display: none;
 }
@@ -79,7 +103,6 @@ button {
 
 button.secondary {
   background: #111827;
-  margin-top: 0.75rem;
 }
 
 .list {

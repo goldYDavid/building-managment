@@ -14,10 +14,27 @@
       <h1>ועד בית דיגיטלי</h1>
       <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
       <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
+
+      <section class="auth-panel" id="authPanel">
+        <div id="authState" class="auth-state">מצב משתמש: אורח</div>
+        <div class="auth-actions">
+          <form id="tenantLoginForm" class="auth-form inline">
+            <input id="tenantName" placeholder="שם דייר / מזהה דירה" required />
+            <input id="tenantApartment" placeholder="דירה" required />
+            <button type="submit">כניסת דייר</button>
+          </form>
+          <form id="adminLoginForm" class="auth-form inline">
+            <input id="username" placeholder="שם משתמש מנהל" required />
+            <input id="password" type="password" placeholder="סיסמה" required />
+            <button type="submit">כניסת מנהל</button>
+          </form>
+          <button id="logoutBtn" class="secondary" type="button">התנתקות</button>
+        </div>
+      </section>
     </header>
 
     <main class="grid">
-      <section class="card">
+      <section class="card" data-admin-only="true">
         <h2>דיירים</h2>
         <form id="residentForm" class="form-row">
           <input id="residentName" placeholder="שם הדייר" required />
@@ -30,7 +47,7 @@
 
       <section class="card">
         <h2>תשלומי ועד</h2>
-        <form id="paymentForm" class="form-row">
+        <form id="paymentForm" class="form-row" data-admin-only="true">
           <input id="paymentApartment" placeholder="דירה" required />
           <input id="amount" type="number" min="1" placeholder="סכום" required />
           <input id="dueDate" type="date" required />
@@ -56,7 +73,7 @@
 
       <section class="card">
         <h2>הודעות ועד</h2>
-        <form id="noticeForm" class="form-row">
+        <form id="noticeForm" class="form-row" data-admin-only="true">
           <input id="noticeTitle" placeholder="נושא" required />
           <textarea id="noticeBody" placeholder="תוכן ההודעה" required></textarea>
           <button type="submit">פרסום הודעה</button>
