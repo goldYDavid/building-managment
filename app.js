@@ -243,7 +243,7 @@ function renderAuth() {
         ? " (admin)"
         : "";
 
-  ui.authState.innerHTML = `מצב משתמש: <strong>${roleLabel}</strong>${identityLabel}`;
+  ui.authState.innerHTML = `תפקיד נוכחי: <strong>${roleLabel}</strong>${identityLabel}`;
 
   document.querySelectorAll("[data-admin-only='true']").forEach((element) => {
     element.classList.toggle("hidden", auth.role !== "admin");

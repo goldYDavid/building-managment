@@ -12,25 +12,37 @@
   <body>
     <header class="topbar">
       <h1>ועד בית דיגיטלי</h1>
-      <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
-      <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
 
-      <section class="auth-panel" id="authPanel">
-        <div id="authState" class="auth-state">מצב משתמש: אורח</div>
+      <section class="auth-panel" id="authPanel" aria-label="אזור התחברות">
+        <div id="authState" class="auth-state">תפקיד נוכחי: אורח</div>
+
         <div class="auth-actions">
-          <form id="tenantLoginForm" class="auth-form inline">
-            <input id="tenantName" placeholder="שם דייר / מזהה דירה" required />
+          <form id="tenantLoginForm" class="auth-form inline" aria-label="כניסת דייר">
+            <label for="tenantName">שם דייר</label>
+            <input id="tenantName" placeholder="שם דייר" required />
+
+            <label for="tenantApartment">דירה</label>
             <input id="tenantApartment" placeholder="דירה" required />
-            <button type="submit">כניסת דייר</button>
+
+            <button type="submit">כניסה כדייר</button>
           </form>
-          <form id="adminLoginForm" class="auth-form inline">
-            <input id="username" placeholder="שם משתמש מנהל" required />
-            <input id="password" type="password" placeholder="סיסמה" required />
-            <button type="submit">כניסת מנהל</button>
+
+          <form id="adminLoginForm" class="auth-form inline" aria-label="כניסת מנהל">
+            <label for="username">username</label>
+            <input id="username" placeholder="username" required />
+
+            <label for="password">password</label>
+            <input id="password" type="password" placeholder="password" required />
+
+            <button type="submit">כניסה כמנהל</button>
           </form>
+
           <button id="logoutBtn" class="secondary" type="button">התנתקות</button>
         </div>
       </section>
+
+      <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
+      <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
     </header>
 
     <main class="grid">
