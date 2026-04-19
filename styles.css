@@ -29,6 +29,59 @@ body {
   margin: 0.25rem 0;
 }
 
+.auth-panel {
+  margin-top: 1rem;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 0.9rem;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+}
+
+.auth-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.auth-form-title {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.auth-state {
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: #1e3a8a;
+}
+
+.auth-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.auth-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.logout-wrap {
+  display: grid;
+}
+
+.logout-btn {
+  width: 100%;
+}
+
 .hidden {
   display: none;
 }
@@ -79,7 +132,6 @@ button {
 
 button.secondary {
   background: #111827;
-  margin-top: 0.75rem;
 }
 
 .list {
@@ -143,4 +195,15 @@ footer {
   text-align: center;
   color: var(--muted);
   padding: 1rem;
+}
+
+@media (min-width: 780px) {
+  .auth-actions {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    align-items: start;
+  }
+
+  .logout-wrap {
+    grid-column: 1 / -1;
+  }
 }

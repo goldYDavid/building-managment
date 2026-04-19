@@ -14,10 +14,39 @@
       <h1>ועד בית דיגיטלי</h1>
       <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
       <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
+
+      <section class="auth-panel" id="authPanel" aria-label="אזור התחברות">
+        <h2 class="auth-title">התחברות ומעבר מצב משתמש</h2>
+        <div id="authState" class="auth-state">מצב משתמש: אורח</div>
+
+        <div class="auth-actions">
+          <form id="tenantLoginForm" class="auth-form">
+            <h3 class="auth-form-title">כניסת דייר</h3>
+            <label for="tenantName">שם דייר</label>
+            <input id="tenantName" placeholder="הקלידו שם דייר" required />
+            <label for="tenantApartment">דירה</label>
+            <input id="tenantApartment" placeholder="הקלידו מספר דירה" required />
+            <button type="submit">מעבר למצב דייר</button>
+          </form>
+
+          <form id="adminLoginForm" class="auth-form">
+            <h3 class="auth-form-title">כניסת מנהל</h3>
+            <label for="username">username</label>
+            <input id="username" placeholder="admin" required />
+            <label for="password">password</label>
+            <input id="password" type="password" placeholder="admin" required />
+            <button type="submit">מעבר למצב מנהל</button>
+          </form>
+
+          <div class="logout-wrap">
+            <button id="logoutBtn" class="secondary logout-btn" type="button">התנתקות למצב אורח</button>
+          </div>
+        </div>
+      </section>
     </header>
 
     <main class="grid">
-      <section class="card">
+      <section class="card" data-admin-only="true">
         <h2>דיירים</h2>
         <form id="residentForm" class="form-row">
           <input id="residentName" placeholder="שם הדייר" required />
@@ -30,7 +59,7 @@
 
       <section class="card">
         <h2>תשלומי ועד</h2>
-        <form id="paymentForm" class="form-row">
+        <form id="paymentForm" class="form-row" data-admin-only="true">
           <input id="paymentApartment" placeholder="דירה" required />
           <input id="amount" type="number" min="1" placeholder="סכום" required />
           <input id="dueDate" type="date" required />
@@ -56,7 +85,7 @@
 
       <section class="card">
         <h2>הודעות ועד</h2>
-        <form id="noticeForm" class="form-row">
+        <form id="noticeForm" class="form-row" data-admin-only="true">
           <input id="noticeTitle" placeholder="נושא" required />
           <textarea id="noticeBody" placeholder="תוכן ההודעה" required></textarea>
           <button type="submit">פרסום הודעה</button>
