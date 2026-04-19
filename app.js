@@ -29,9 +29,17 @@ let deferredInstallPrompt = null;
 ui.tenantLoginForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const tenantName = value("tenantName");
+  const tenantApartment = value("tenantApartment");
+
+  if (!tenantName || !tenantApartment) {
+    alert("יש להזין שם דייר ומספר דירה תקינים כדי להתחבר כדייר.");
+    return;
+  }
+
   auth.role = "tenant";
-  auth.tenantName = value("tenantName");
-  auth.tenantApartment = normalizeApartmentIdentifier(value("tenantApartment"));
+  auth.tenantName = tenantName;
+  auth.tenantApartment = normalizeApartmentIdentifier(tenantApartment);
   persistAuth();
   ui.tenantLoginForm.reset();
   render();
