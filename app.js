@@ -1,6 +1,8 @@
 const STORAGE_KEY = "building_mgmt_v1";
+const AUTH_KEY = "building_auth_v1";
 
 const state = loadState();
+const auth = loadAuth();
 
 const ui = {
   residentForm: document.getElementById("residentForm"),
@@ -12,6 +14,10 @@ const ui = {
   noticeForm: document.getElementById("noticeForm"),
   noticesList: document.getElementById("noticesList"),
   installBtn: document.getElementById("installBtn"),
+  tenantLoginForm: document.getElementById("tenantLoginForm"),
+  adminLoginForm: document.getElementById("adminLoginForm"),
+  authState: document.getElementById("authState"),
+  logoutBtn: document.getElementById("logoutBtn"),
   kpiResidents: document.getElementById("kpiResidents"),
   kpiOpenTickets: document.getElementById("kpiOpenTickets"),
   kpiOutstanding: document.getElementById("kpiOutstanding"),
@@ -19,6 +25,40 @@ const ui = {
 };
 
 let deferredInstallPrompt = null;
+
+ui.tenantLoginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const tenantName = value("tenantName");
+  const tenantApartment = value("tenantApartment");
+  if (!tenantName || !tenantApartment) {
+    alert("יש למלא שם דייר ודירה.");
+    return;
+  }
+  auth.role = "tenant";
+  auth.tenantName = tenantName;
+  auth.tenantApartment = tenantApartment;
+  persistAuth();
+  render();
+});
+
+ui.adminLoginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = value("username");
+  const password = value("password");
+  if (username === "admin" && password === "admin") {
+    auth.role = "admin";
+    persistAuth();
+    render();
+    return;
+  }
+  alert("שם משתמש או סיסמה שגויים.");
+});
+
+ui.logoutBtn.addEventListener("click", () => {
+  auth.role = "guest";
+  persistAuth();
+  render();
+});
 
 ui.residentForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -100,6 +140,8 @@ if ("serviceWorker" in navigator) {
 }
 
 function render() {
+  renderAuth();
+
   ui.residentsList.innerHTML = state.residents
     .map((r) => `<li><strong>${escapeHtml(r.name)}</strong> · דירה ${escapeHtml(r.apartment)} · ${escapeHtml(r.phone || "ללא")}</li>`)
     .join("");
@@ -139,6 +181,11 @@ function render() {
   bindActions();
 }
 
+function renderAuth() {
+  const roleLabel = auth.role === "admin" ? "מנהל" : auth.role === "tenant" ? "דייר" : "אורח";
+  ui.authState.textContent = `מצב נוכחי: ${roleLabel}`;
+}
+
 function bindActions() {
   document.querySelectorAll("[data-pay-id]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -169,6 +216,10 @@ function persist() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
+function persistAuth() {
+  localStorage.setItem(AUTH_KEY, JSON.stringify(auth));
+}
+
 function loadState() {
   const existing = localStorage.getItem(STORAGE_KEY);
   if (existing) {
@@ -180,6 +231,23 @@ function loadState() {
     tickets: [],
     notices: []
   };
+}
+
+function loadAuth() {
+  const existing = localStorage.getItem(AUTH_KEY);
+  if (!existing) {
+    return { role: "guest", tenantName: "", tenantApartment: "" };
+  }
+  try {
+    const parsed = JSON.parse(existing);
+    return {
+      role: parsed.role === "admin" || parsed.role === "tenant" ? parsed.role : "guest",
+      tenantName: typeof parsed.tenantName === "string" ? parsed.tenantName : "",
+      tenantApartment: typeof parsed.tenantApartment === "string" ? parsed.tenantApartment : ""
+    };
+  } catch {
+    return { role: "guest", tenantName: "", tenantApartment: "" };
+  }
 }
 
 function value(id) {

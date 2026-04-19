@@ -14,6 +14,29 @@
       <h1>ועד בית דיגיטלי</h1>
       <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
       <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
+
+      <section class="auth-panel" aria-label="אזור התחברות">
+        <h2 class="auth-title">כניסה למערכת</h2>
+        <div id="authState" class="auth-state">מצב נוכחי: אורח</div>
+
+        <form id="tenantLoginForm" class="auth-form">
+          <label for="tenantName">שם דייר</label>
+          <input id="tenantName" placeholder="שם דייר" required />
+          <label for="tenantApartment">דירה</label>
+          <input id="tenantApartment" placeholder="מספר דירה" required />
+          <button type="submit">כניסת דייר</button>
+        </form>
+
+        <form id="adminLoginForm" class="auth-form">
+          <label for="username">username</label>
+          <input id="username" placeholder="admin" required />
+          <label for="password">password</label>
+          <input id="password" type="password" placeholder="admin" required />
+          <button type="submit">כניסת מנהל</button>
+        </form>
+
+        <button id="logoutBtn" type="button" class="secondary logout-btn">התנתקות</button>
+      </section>
     </header>
 
     <main class="grid">
