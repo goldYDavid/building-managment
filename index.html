@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b5fff" />
+    <meta name="description" content="אפליקציית ועד בית לניהול בניין: תשלומים, תקלות, הודעות ודוחות." />
+    <title>ועד בית דיגיטלי</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>ועד בית דיגיטלי</h1>
+      <p>ניהול בניין במקום אחד: דיירים, גבייה, תקלות ותקשורת.</p>
+      <button id="installBtn" class="secondary hidden">התקנת האפליקציה</button>
+
+      <section class="auth-panel" id="authPanel">
+        <div id="authState" class="auth-state">מצב משתמש: לא מחובר</div>
+        <p class="auth-hint">בחר מצב: התחברות מנהל (admin/admin) או מעבר למצב דייר.</p>
+        <form id="loginForm" class="auth-form">
+          <input id="username" placeholder="שם משתמש" required />
+          <input id="password" type="password" placeholder="סיסמה" required />
+          <button type="submit">התחברות מנהל (admin/admin)</button>
+        </form>
+        <div class="auth-actions">
+          <button id="residentModeBtn" class="secondary" type="button">מעבר למצב דייר</button>
+          <button id="logoutBtn" class="secondary hidden" type="button">התנתקות</button>
+        </div>
+      </section>
+    </header>
+
+    <main class="grid">
+      <section class="card" data-admin-only="true">
+        <h2>דיירים</h2>
+        <form id="residentForm" class="form-row">
+          <input id="residentName" placeholder="שם הדייר" required />
+          <input id="apartment" placeholder="דירה" required />
+          <input id="phone" placeholder="טלפון" />
+          <button type="submit">הוספת דייר</button>
+        </form>
+        <ul id="residentsList" class="list"></ul>
+      </section>
+
+      <section class="card" data-admin-only="true">
+        <h2>תשלומי ועד</h2>
+        <form id="paymentForm" class="form-row">
+          <input id="paymentApartment" placeholder="דירה" required />
+          <input id="amount" type="number" min="1" placeholder="סכום" required />
+          <input id="dueDate" type="date" required />
+          <button type="submit">יצירת חיוב</button>
+        </form>
+        <ul id="paymentsList" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>קריאות שירות</h2>
+        <form id="ticketForm" class="form-row">
+          <input id="ticketTitle" placeholder="כותרת התקלה" required />
+          <select id="priority">
+            <option value="נמוכה">נמוכה</option>
+            <option value="בינונית" selected>בינונית</option>
+            <option value="גבוהה">גבוהה</option>
+          </select>
+          <textarea id="ticketDesc" placeholder="תיאור"></textarea>
+          <button type="submit">פתיחת קריאה</button>
+        </form>
+        <ul id="ticketsList" class="list"></ul>
+      </section>
+
+      <section class="card" data-admin-only="true">
+        <h2>הודעות ועד</h2>
+        <form id="noticeForm" class="form-row">
+          <input id="noticeTitle" placeholder="נושא" required />
+          <textarea id="noticeBody" placeholder="תוכן ההודעה" required></textarea>
+          <button type="submit">פרסום הודעה</button>
+        </form>
+        <ul id="noticesList" class="list"></ul>
+      </section>
+
+      <section class="card full">
+        <h2>מצב הבניין (KPI)</h2>
+        <div class="kpis">
+          <div><strong id="kpiResidents">0</strong><span>דיירים</span></div>
+          <div><strong id="kpiOpenTickets">0</strong><span>קריאות פתוחות</span></div>
+          <div><strong id="kpiOutstanding">₪0</strong><span>חוב פתוח</span></div>
+          <div><strong id="kpiNotices">0</strong><span>הודעות חודשיות</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>גרסה ראשונית ל-GitHub Pages עם בסיס ל-PWA/Google Play (TWA).</small>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
